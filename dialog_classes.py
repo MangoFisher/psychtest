@@ -29,14 +29,17 @@ class TestDialog(QDialog):
         # 测试说明文档
         self.context = QLabel()
         # 用以放置N道TestCase的QtLlistWidget
-        # self.qlist = QListWidget()
+        self.qlist = QListWidget()
+        # 对话框布局器
+        self.d_layout = QVBoxLayout()
+        self.setLayout(self.d_layout)
 
     def caculate(self):
         '''将用户每道题目选择的答案对应的分数累加，得到测试总分数'''
         pass
 
 
-class TestCase(object):
+class TestCase(QWidget):
     '''代表每道测试题目'''
     def __init__(self):
         super(TestCase, self).__init__()
@@ -46,6 +49,14 @@ class TestCase(object):
         self.b_group = QButtonGroup()
         # 记录用户选择的对该question的答案
         self.choice = None
+        # question和radioButton group的布局器
+        self.case_layout = QVBoxLayout()
+        self.setLayout(self.case_layout)
+
+    def setQuestion(self,question):
+        '''设置问题文案'''
+        self.question.setText(question)
+
 
 
 

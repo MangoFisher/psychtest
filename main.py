@@ -4,6 +4,7 @@ __created_date__ = "2017/4/18"
 import sys
 from PyQt4 import QtCore, QtGui, uic
 from PyQt4.QtGui import QVBoxLayout, QHBoxLayout
+from PyQt4.QtCore import QSize
 from dialog_classes import *
 
 qtCreatorFile = "psychtest.ui"
@@ -29,38 +30,21 @@ class PsychTest(QtGui.QMainWindow, Ui_MainWindow):
         dialog.setWindowTitle(u"自尊量表SES")
         dialog.context.setText(u"测试说明文档")
 
-        # dialog.qlist.addItem(QtGui.QListWidgetItem(test_case1))
-        #q_layout = QVBoxLayout()
-        # q_layout.addWidget(test_case1)
-        #dialog.qlist.setLayout(q_layout)
-
-
         # Dialog布局器
         d_layout = QVBoxLayout()
-        #d_layout.addWidget(dialog.context)
+        d_layout.addWidget(dialog.context)
         # d_layout.addWidget(test_case1)
 
         # 对TestCase进行组装
-        #test_case1 = TestCase()
-        #test_case1.question.setText(u"1.测试问题1")
-        #rb_1 = QRadioButton("rbutton1")
-        #test_case1.b_group.addButton(rb_1, 0)
-        #test_case1.b_group.addButton(QRadioButton("rbutton2"))
+        test_case1 = TestCase()
+        test_case1.setQuestion(u"1.测试问题")
 
-        #d_layout.addWidget(test_case1.question)
-        #dialog.setLayout(d_layout)
+        myQListWidgetItem = QListWidgetItem(dialog.qlist)
+        myQListWidgetItem.setSizeHint(QSize(100, 100))
+        dialog.qlist.addItem(myQListWidgetItem)
+        dialog.qlist.setItemWidget(myQListWidgetItem, test_case1)
 
-        btg = QButtonGroup()
-        rb_1 = QRadioButton("rbutton1")
-        rb_1.setChecked(True)
-        rb_2 = QRadioButton("rbutton2")
-        rb_3 = QRadioButton("rbutton3")
-        btg.addButton(rb_1)
-        btg.addButton(rb_2)
-        btg.addButton(rb_3)
-        d_layout.addWidget(rb_1)
-        d_layout.addWidget(rb_2)
-        d_layout.addWidget(rb_3)
+
         dialog.setLayout(d_layout)
         dialog.exec_()
 
